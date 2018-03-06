@@ -14,7 +14,7 @@ let options = new RequestOptions({ headers: headers });
 
 @Injectable()
 export class CoinService {
-private _Url = 'http://localhost:3000/criptos/order/';
+private _Url = 'https://quantbit.herokuapp.com/cryptos/order/';
 
     constructor(private _http: Http) { }
     
