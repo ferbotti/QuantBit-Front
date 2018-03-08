@@ -20,4 +20,10 @@ export class AppComponent {
             .subscribe((data: Coin[]) => this.coin = data,
             error => console.log(error));
     }
+
+    CoinSelectList(): void {
+      this._coinService.getListCoin()
+          .subscribe((data: Coin[]) => this.coin = data,
+          error => console.log(error));
+  }
 }

@@ -14,13 +14,23 @@ let options = new RequestOptions({ headers: headers });
 
 @Injectable()
 export class CoinService {
-private _Url = 'https://quantbit.herokuapp.com/cryptos/order/';
+//private _Url = 'https://quantbit.herokuapp.com/cryptos/order/';
+private _Url = 'http://localhost:3000/cryptos/order/';
+private _UrlList = 'http://localhost:3000/cryptos/list/6';
 
     constructor(private _http: Http) { }
     
     getCoin(rank: string): Observable<Coin[]> {
         
         return this._http.get(this._Url.concat(parseInt(rank).toString()), options)
+            .map((response: Response) => <Coin[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getListCoin(): Observable<Coin[]> {
+        
+        return this._http.get(this._UrlList, options)
             .map((response: Response) => <Coin[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
